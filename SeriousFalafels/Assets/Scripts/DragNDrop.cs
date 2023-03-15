@@ -22,8 +22,8 @@ public class DragNDrop : MonoBehaviour
     private void OnMouseDrag() {
         if (isDragged) {
             transform.localPosition = spriteDragStartPosition + GetMouseWorldPosition() - mouseDragStartPosition;
+            dragEndedCallback?.Invoke(this);
         }
-        
     }
 
     private void OnMouseUp() {
