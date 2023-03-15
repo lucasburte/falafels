@@ -12,7 +12,7 @@ public class SnapController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach( DragNDrop draggable in draggableObjects) {
+        foreach( DragNDrop draggable in draggableObjects ) {
             draggable.dragEndedCallback = OnDragEnded;
         }
     }
