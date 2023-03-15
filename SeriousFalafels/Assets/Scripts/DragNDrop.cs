@@ -70,4 +70,9 @@ public class DragNDrop : MonoBehaviour
     public void ResetPosition() {
         transform.localPosition = spriteInitPosition;
     }
+
+    public bool IsSnapped()
+    {
+        return isSnapped;
+    }
 }

@@ -35,4 +35,9 @@ public class SnapController : MonoBehaviour
             draggable.SetSnapped(true);
         }
     }
+
+    public List<DragNDrop> getDragObjects()
+    {
+        return draggableObjects;
+    }
 }

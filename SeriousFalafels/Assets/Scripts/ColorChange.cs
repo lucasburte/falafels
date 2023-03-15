@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ColorChange : MonoBehaviour
 {
+
+    public GameObject tableau;
+    public List<DragNDrop> dragObjects;
+
     // Start is called before the first frame update
     void Start()
     {
