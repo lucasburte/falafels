@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SnapController : MonoBehaviour
 {
+
     public List<Transform> snapPoints;
     public List<DragNDrop> draggableObjects;
     [SerializeField]
@@ -15,6 +16,7 @@ public class SnapController : MonoBehaviour
             draggable.dragEndedCallback = OnDragEnded;
         }
     }
+
 
     private void OnDragEnded(DragNDrop draggable) {
         float closestDistance = Mathf.Infinity;
@@ -30,6 +32,7 @@ public class SnapController : MonoBehaviour
 
         if (closestSnapPoint != null && closestDistance < snapRange ) {
             draggable.transform.localPosition = closestSnapPoint.localPosition;
+            draggable.SetSnapped(true);
         }
     }
 }
