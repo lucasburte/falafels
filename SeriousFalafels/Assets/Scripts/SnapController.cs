@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SnapController : MonoBehaviour
 {
-    public delegate void DragEndDelegate();
     public List<Transform> snapPoints;
     public List<DragNDrop> draggableObjects;
     [SerializeField]
@@ -12,12 +11,26 @@ public class SnapController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        foreach( DragNDrop draggable in draggableObjects) {
+            draggable.dragEndedCallback = OnDragEnded;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnDragEnded(DragNDrop draggable) {
+        float closestDistance = Mathf.Infinity;
+        Transform closestSnapPoint = null;
+
+        foreach(Transform snapPoint in snapPoints) {
+            float currentDistance = Vector2.Distance(draggable.transform.localPosition, snapPoint.localPosition);
+            if (currentDistance < closestDistance) {
+                closestDistance = currentDistance;
+                closestSnapPoint = snapPoint;
+            }
+        }
+
+        if (closestSnapPoint != null && closestDistance < snapRange ) {
+            draggable.transform.localPosition = closestSnapPoint.localPosition;
+        }
+
     }
 }

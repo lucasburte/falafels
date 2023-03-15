@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class DragNDrop : MonoBehaviour
 {
+    public delegate void DragEndDelegate(DragNDrop draggableObject);
+    public DragEndDelegate dragEndedCallback; 
     private bool isDragged = false;
     private Vector3 mouseDragStartPosition;
     private Vector3 spriteDragStartPosition;
@@ -26,5 +28,6 @@ public class DragNDrop : MonoBehaviour
 
     private void OnMouseUp() {
         isDragged = false;
+        dragEndedCallback?.Invoke(this);
     }
 }
